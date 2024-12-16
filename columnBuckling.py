@@ -26,10 +26,10 @@ p3 = (1,1)
 def getMoment(integrand, start, end):
     return sp.integrate.quad(integrand, start, end)[0]
 
-print(getMoment(f, 0, 5))
 #Equation given in Appendix
-def criticalColBuckling(L, clamped=True):
+def criticalColBuckling(start, end, clamped=True):
     #Kpi^2EI/(LA^2)
+    L = end - start
     k = 4 if clamped else 1/4
     #around x:
     stressX = (k*np.pi**2 * E * Ixx)/(L*A**2)
@@ -54,8 +54,8 @@ def stringerStress(start, end):
     #the *1.5 is the safety factor
     return max(stresses)*1.5
 
-def colSafetyMargin(L, start, end, clamped = True):
-    return (criticalColBuckling(L, clamped = clamped)/stringerStress(start, end) )
+def colSafetyMargin(start, end, clamped = True):
+    return (criticalColBuckling(start, end, clamped = clamped)/stringerStress(start, end) )
 
 # criticalColBuckling(Ixx, Iyy, 1, 1)
 # stringerStress(Ixx, Iyy, Ixy, My, Mx)
