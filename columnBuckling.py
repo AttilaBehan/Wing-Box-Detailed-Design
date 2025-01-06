@@ -1,7 +1,7 @@
 import numpy as np
 import scipy as sp
 
-E = 1 #material property to change to correct one
+E = 72.4*10**9 #material property to change to correct one
 
 def g(x):
     #My
@@ -13,10 +13,10 @@ def f(x):
     return -10.0332*x**5+273.5632*x**4-2785.2272*x**3+26071.1829*x**2-290785.6037*x**1+1356183.4157*x
 
 
-Ixx = 2
-Iyy = 1
-Ixy = 1
-A = 1
+Ixx = 69781.901*(10**(-12))
+Iyy = 69781.901*(10**(-12))
+Ixy = 37353.516*(10**(-12)) 
+A = 400*10**(-6) 
 
 # the three points where stress could be maximum
 points = [(1, 1), (1,1), (1,1)]
@@ -30,7 +30,7 @@ def getMoment(integrand, start, end):
 def criticalColBuckling(start, end, clamped=True):
     #Kpi^2EI/(LA^2)
     L = end - start
-    k = 4 if clamped else 1/4
+    k = 1
     #around x:
     stressX = (k*np.pi**2 * E * Ixx)/(L*A**2)
     stressY = (k*np.pi**2 * E * Iyy)/(L*A**2)
