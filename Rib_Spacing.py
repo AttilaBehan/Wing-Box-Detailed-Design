@@ -1,4 +1,4 @@
-from columnBuckling import colSafetyMargin
+from Column_Buckling import colSafetyMargin
 safety_margin=5
 span_loc=0 
 ribs=[0]
